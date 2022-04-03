@@ -1,0 +1,2 @@
+prefix   = "fakss"
+location = "northeurope"
