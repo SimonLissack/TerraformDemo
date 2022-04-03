@@ -8,4 +8,7 @@ local.settings.json
 *.pptx
 notes.md
 *.tmp
+
 .terraform
+*.tfstate
+*.tfstate.*
