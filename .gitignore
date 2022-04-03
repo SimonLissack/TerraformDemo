@@ -3,3 +3,9 @@
 [Oo]bj/
 
 local.settings.json
+
+*.docx
+*.pptx
+notes.md
+*.tmp
+.terraform
