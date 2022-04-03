@@ -14,17 +14,12 @@ var host = new HostBuilder()
     {
         s.AddAzureClients(c =>
         {
-            TokenCredential tokenCredential;
-
-            if(h.HostingEnvironment.IsDevelopment()){
-                // Default was throwing an exception locally, so use CLI creds
-                tokenCredential = new AzureCliCredential();
-            }else{
-                tokenCredential = new DefaultAzureCredential();
-            }
+            // Default was throwing an exception locally, so use CLI creds
+            TokenCredential tokenCredential = h.HostingEnvironment.IsDevelopment()
+                ? new AzureCliCredential()
+                : new DefaultAzureCredential();
 
             var queueClient = c.AddQueueServiceClient(h.Configuration.GetSection("Queue")).WithCredential(tokenCredential);
-            var tableClient = c.AddTableServiceClient(h.Configuration.GetSection("Table")).WithCredential(tokenCredential);
         });
     })
     .Build();

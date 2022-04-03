@@ -1,6 +1,5 @@
 using System.Net;
 using System.Text.Json;
-using Azure.Data.Tables;
 using Azure.Storage.Queues;
 using Microsoft.Azure.Functions.Worker;
 using Microsoft.Azure.Functions.Worker.Http;
@@ -14,14 +13,12 @@ public class UserInput
     private readonly ILogger _logger;
     private readonly IConfiguration _configuration;
     private readonly QueueServiceClient _queueClient;
-    private readonly TableServiceClient _tableClient;
 
-    public UserInput(ILoggerFactory loggerFactory, IConfiguration configuration, QueueServiceClient queueClient, TableServiceClient tableClient)
+    public UserInput(ILoggerFactory loggerFactory, IConfiguration configuration, QueueServiceClient queueClient)
     {
         _logger = loggerFactory.CreateLogger<UserInput>();
         _configuration = configuration;
         _queueClient = queueClient;
-        _tableClient = tableClient;
     }
 
     [Function("PostUserInput")]
